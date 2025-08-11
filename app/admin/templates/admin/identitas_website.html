@@ -399,70 +399,86 @@
     </nav>
   <!-- Main Content -->
   <main class="flex-1 h-screen overflow-y-auto p-6">
-    <h1 class="text-2xl font-bold mb-6">Identitas Website</h1>
-    <div class="bg-white shadow rounded p-6">
-      <form method="POST" enctype="multipart/form-data" class="space-y-4">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div>
-            <label class="block font-semibold mb-1">Nama Website</label>
-            <input type="text" name="nama_website" class="w-full border rounded px-3 py-2" required>
-          </div>
-          <div>
-            <label class="block font-semibold mb-1">Email</label>
-            <input type="email" name="email" class="w-full border rounded px-3 py-2" required>
-          </div>
-          <div>
-            <label class="block font-semibold mb-1">Domain</label>
-            <input type="text" name="domain" class="w-full border rounded px-3 py-2" required>
-          </div>
-          <div>
-            <label class="block font-semibold mb-1">Sosial Network</label>
-            <input type="text" name="sosial_network" class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label class="block font-semibold mb-1">No. Rekening</label>
-            <input type="text" name="no_rekening" class="w-full border rounded px-3 py-2">
-          </div>
-          <div>
-            <label class="block font-semibold mb-1">No. Telepon</label>
-            <input type="text" name="no_telpon" class="w-full border rounded px-3 py-2">
-          </div>
+  <h1 class="text-2xl font-bold mb-6">Identitas Website</h1>
+
+  <div class="bg-white shadow rounded p-6">
+    <!-- Tampilkan pesan jika tidak ada data -->
+    {% if not data %}
+      <div class="mb-4 text-red-600">Belum ada data identitas website. Silakan isi lalu Simpan.</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('admin.identitas_website') }}" enctype="multipart/form-data" class="space-y-4">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div>
+          <label class="block font-semibold mb-1">Nama Website</label>
+          <input type="text" name="nama_website" value="{{ data.nama_website if data else '' }}" class="w-full border rounded px-3 py-2" required>
         </div>
         <div>
-          <label class="block font-semibold mb-1">Meta Deskripsi</label>
-          <textarea name="meta_deskripsi" rows="3" class="w-full border rounded px-3 py-2"></textarea>
+          <label class="block font-semibold mb-1">Email</label>
+          <input type="email" name="email" value="{{ data.email if data else '' }}" class="w-full border rounded px-3 py-2" required>
         </div>
         <div>
-          <label class="block font-semibold mb-1">Meta Keyword</label>
-          <textarea name="meta_keyword" rows="3" class="w-full border rounded px-3 py-2"></textarea>
+          <label class="block font-semibold mb-1">Domain</label>
+          <input type="text" name="domain" value="{{ data.domain if data else '' }}" class="w-full border rounded px-3 py-2" required>
         </div>
         <div>
-          <label class="block font-semibold mb-1">Google Maps</label>
-          <textarea name="google_maps" rows="3" class="w-full border rounded px-3 py-2"></textarea>
+          <label class="block font-semibold mb-1">Sosial Network</label>
+          <input type="text" name="sosial_network" value="{{ data.sosial_network if data else '' }}" class="w-full border rounded px-3 py-2">
         </div>
         <div>
-          <label class="block font-semibold mb-1">Favicon</label>
-          <input type="file" name="favicon" class="w-full border rounded px-3 py-2">
+          <label class="block font-semibold mb-1">No. Rekening</label>
+          <input type="text" name="no_rekening" value="{{ data.no_rekening if data else '' }}" class="w-full border rounded px-3 py-2">
         </div>
-        <div class="pt-4">
-          <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
-            Simpan
-          </button>
+        <div>
+          <label class="block font-semibold mb-1">No. Telepon</label>
+          <input type="text" name="no_telpon" value="{{ data.no_telpon if data else '' }}" class="w-full border rounded px-3 py-2">
         </div>
-      </form>
-    </div>
-    
- <!-- Footer -->
-       </div>
-      <footer class="mt-8 text-center text-sm text-gray-500">
-        <p>
-          Copyright © 2014-2025
-          <a href="#" class="text-blue-700 font-semibold">Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Purworejo </a>.
-          All rights reserved.Version 3.0.0
-        </p>
-      </footer>
-    </main>
-    </div>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Meta Deskripsi</label>
+        <textarea name="meta_deskripsi" rows="3" class="w-full border rounded px-3 py-2">{{ data.meta_deskripsi if data else '' }}</textarea>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Meta Keyword</label>
+        <textarea name="meta_keyword" rows="3" class="w-full border rounded px-3 py-2">{{ data.meta_keyword if data else '' }}</textarea>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Google Maps</label>
+        <textarea name="google_maps" rows="3" class="w-full border rounded px-3 py-2">{{ data.google_maps if data else '' }}</textarea>
+      </div>
+
+      <div>
+        <label class="block font-semibold mb-1">Favicon</label>
+        {% if data and data.favicon %}
+          <div class="mb-2">
+            <img src="{{ url_for('static', filename='uploads/' ~ data.favicon) }}" alt="favicon" class="w-10 h-10 inline-block mr-2">
+            <span class="text-sm text-gray-600">Favicon saat ini: {{ data.favicon }}</span>
+          </div>
+        {% endif %}
+        <input type="file" name="favicon" class="w-full border rounded px-3 py-2">
+      </div>
+
+      <div class="pt-4">
+        <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded">
+          Simpan
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Footer -->
+  <footer class="mt-8 text-center text-sm text-gray-500">
+    <p>
+      Copyright © 2014-2025
+      <a href="#" class="text-blue-700 font-semibold">Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Purworejo </a>.
+      All rights reserved.Version 3.0.0
+    </p>
+  </footer>
+</main>
+
 
   <!-- Script -->
   <script>

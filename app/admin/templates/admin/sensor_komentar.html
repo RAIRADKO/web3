@@ -203,7 +203,7 @@
         <div class="card-header">
           <div class="d-flex justify-content-between align-items-center">
             <h5 class="mb-0">Sensor Komentar Berita</h5>
-            <a href="/tambah" class="btn btn-primary btn-sm">Tambahkan Data</a>
+            <a href="tambah_sensor" class="btn btn-primary btn-sm">Tambahkan Data</a>
           </div>
         </div>
         <div class="card-body">
@@ -238,23 +238,22 @@
                     <th>Kata Jelek</th>
                     <th>Ganti Menjadi</th>
                     <th>Action</th>
+                    <th>Opsi</th>
                   </tr>
                 </thead>
-                <tbody> 
-
+                <tbody>
+                  {% for row in data %}
                   <tr>
-                    <td>1</td>
-                    <td>dancuk</td>
-                     <td>&**k</td>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.kata_jelek }}</td>
+                    <td>{{ row.ganti_menjadi }}</td>
+                    <td>{{ row.action }}</td>
                     <td>
-                      <a href="/edit/{{ row.id }}" class="btn btn-sm btn-success" title="Edit">
-                        <i class="bi bi-pencil-fill"></i>
-                      </a>
-                      <a href="/delete/{{ row.id }}" class="btn btn-sm btn-danger" title="Hapus" onclick="return confirm('Yakin ingin menghapus data ini?');">
-                        <i class="bi bi-trash-fill"></i>
-                      </a>
+                      <a href="{{ url_for('admin.edit_sensor', id=row.id) }}" class="btn btn-sm btn-success">Edit</a>
+                      <a href="{{ url_for('admin.delete_sensor', id=row.id) }}" class="btn btn-sm btn-danger" onclick="return confirm('Yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                   </tr>
+                  {% endfor %}
                 </tbody>
               </table>
             </div>
