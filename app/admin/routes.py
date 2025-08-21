@@ -49,7 +49,25 @@ def logout():
     session.pop('user', None)
     return redirect(url_for('admin.login'))
 
+<<<<<<< HEAD
 # ------------------ SENSOR KOMENTAR ------------------
+=======
+@admin.route('/identitas_website')
+def identitas_website():
+    """Menampilkan data dari tabel identitas_website."""
+    if 'user' not in session:
+        return redirect(url_for('admin.login'))
+
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute('SELECT * FROM identitas_website')
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return render_template('admin/identitas_website.html', data=data)
+
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
 @admin.route('/sensor_komentar')
 def sensor_komentar():
     if 'user' not in session:
@@ -64,11 +82,16 @@ def sensor_komentar():
 
     return render_template('admin/sensor_komentar.html', data=data)
 
+<<<<<<< HEAD
 @admin.route('/tambah_sensor', methods=['POST'])
+=======
+@admin.route('/tambah_sensor', methods=['GET', 'POST'])
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
 def tambah_sensor():
     if 'user' not in session:
         return redirect(url_for('admin.login'))
 
+<<<<<<< HEAD
     kata = request.form['kata_jelek']
     ganti = request.form['ganti_menjadi']
 
@@ -85,10 +108,29 @@ def tambah_sensor():
 
 
 @admin.route('/edit_sensor/<int:id>', methods=['POST'])
+=======
+    if request.method == 'POST':
+        kata = request.form['kata_jelek']
+        ganti = request.form['ganti_menjadi']
+        action = request.form['action']
+
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute('INSERT INTO sensor_komentar (kata_jelek, ganti_menjadi, action) VALUES (%s, %s, %s)', (kata, ganti, action))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for('admin.sensor_komentar'))
+
+    return render_template('admin/tambah_sensor.html')
+
+@admin.route('/edit/<int:id>', methods=['GET', 'POST'])
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
 def edit_sensor(id):
     if 'user' not in session:
         return redirect(url_for('admin.login'))
 
+<<<<<<< HEAD
     kata = request.form['kata_jelek']
     ganti = request.form['ganti_menjadi']
 
@@ -690,10 +732,13 @@ def identitas_website():
     if 'user' not in session:
         return redirect(url_for('admin.login'))
 
+=======
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
     conn = get_db()
     cursor = conn.cursor(dictionary=True)
 
     if request.method == 'POST':
+<<<<<<< HEAD
         # Ambil data form
         nama_website   = request.form.get('nama_website', '').strip()
         email          = request.form.get('email', '').strip()
@@ -766,10 +811,23 @@ def identitas_website():
 
     # GET → tampilkan data
     cursor.execute("SELECT * FROM identitas_website LIMIT 1")
+=======
+        kata = request.form['kata_jelek']
+        ganti = request.form['ganti_menjadi']
+        action = request.form['action']
+        cursor.execute('UPDATE sensor_komentar SET kata_jelek=%s, ganti_menjadi=%s, action=%s WHERE id=%s', (kata, ganti, action, id))
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for('admin.sensor_komentar'))
+
+    cursor.execute('SELECT * FROM sensor_komentar WHERE id = %s', (id,))
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
     data = cursor.fetchone()
     cursor.close()
     conn.close()
 
+<<<<<<< HEAD
     return render_template('admin/identitas_website.html', data=data)
 
 # ---------------- BERITA---------------
@@ -777,10 +835,17 @@ def identitas_website():
 # Halaman daftar berita
 @admin.route('/berita')
 def berita():
+=======
+    return render_template('admin/edit_sensor.html', data=data)
+
+@admin.route('/delete/<int:id>')
+def delete_sensor(id):
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
     if 'user' not in session:
         return redirect(url_for('admin.login'))
 
     conn = get_db()
+<<<<<<< HEAD
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM berita ORDER BY tanggal DESC")
     daftar_berita = cursor.fetchall()
@@ -824,10 +889,15 @@ def tambah_berita():
         INSERT INTO berita (judul, sub_judul, video_youtube, kategori, headline, berita_utama, isi_berita, gambar, tag, tanggal, waktu_posting, status)
         VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)
     """, (judul, sub_judul, video_youtube, kategori, headline, berita_utama, isi_berita, gambar, tag, tanggal, waktu_posting, status))
+=======
+    cursor = conn.cursor()
+    cursor.execute('DELETE FROM sensor_komentar WHERE id = %s', (id,))
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
     conn.commit()
     cursor.close()
     conn.close()
 
+<<<<<<< HEAD
     flash("Berita berhasil ditambahkan!", "success")
     return redirect(url_for('admin.berita'))
 
@@ -885,10 +955,16 @@ def edit_berita(id):
     return redirect(url_for('admin.berita'))
 # ---------------- HALAMAN BARU ----------------
 # Route untuk menampilkan halaman_baru
+=======
+    return redirect(url_for('admin.sensor_komentar'))
+
+# Tampilkan semua data halaman_baru
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
 @admin.route('/halaman_baru')
 def halaman_baru():
     if 'user' not in session:
         return redirect(url_for('admin.login'))
+<<<<<<< HEAD
     
     conn = get_db()
     cursor = conn.cursor(dictionary=True)
@@ -902,10 +978,25 @@ def halaman_baru():
 
 # Tambah halaman baru
 @admin.route('/tambah_halaman', methods=['POST'])
+=======
+
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute('SELECT * FROM halaman_baru ORDER BY tanggal_posting DESC')
+    data = cursor.fetchall()
+    cursor.close()
+    conn.close()
+
+    return render_template('admin/halaman_baru.html', data=data)
+
+# Tambah data baru
+@admin.route('/tambah_halaman', methods=['GET', 'POST'])
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
 def tambah_halaman():
     if 'user' not in session:
         return redirect(url_for('admin.login'))
 
+<<<<<<< HEAD
     judul = request.form.get('judul')
     link = request.form.get('link')
     tanggal_posting = request.form.get('tanggal_posting')
@@ -926,10 +1017,34 @@ def tambah_halaman():
 
 # Edit halaman
 @admin.route('/edit_halaman/<int:id>', methods=['POST'])
+=======
+    if request.method == 'POST':
+        judul = request.form['judul']
+        link = request.form['link']
+        tanggal_posting = request.form['tanggal_posting']
+
+        conn = get_db()
+        cursor = conn.cursor()
+        cursor.execute(
+            'INSERT INTO halaman_baru (judul, link, tanggal_posting) VALUES (%s, %s, %s)',
+            (judul, link, tanggal_posting)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+
+        return redirect(url_for('admin.halaman_baru'))
+
+    return render_template('admin/tambah_halaman.html')
+
+# Edit data
+@admin.route('/edit_halaman/<int:id>', methods=['GET', 'POST'])
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
 def edit_halaman(id):
     if 'user' not in session:
         return redirect(url_for('admin.login'))
 
+<<<<<<< HEAD
     judul = request.form.get('judul')
     link = request.form.get('link')
     tanggal_posting = request.form.get('tanggal_posting')
@@ -1213,16 +1328,57 @@ def edit_playlist(id):
 # ================================
 @admin.route('/hapus_playlist/<int:id>', methods=['POST'])
 def playlist_delete(id):
+=======
+    conn = get_db()
+    cursor = conn.cursor(dictionary=True)
+
+    if request.method == 'POST':
+        judul = request.form['judul']
+        link = request.form['link']
+        tanggal_posting = request.form['tanggal_posting']
+
+        cursor.execute(
+            'UPDATE halaman_baru SET judul=%s, link=%s, tanggal_posting=%s WHERE id=%s',
+            (judul, link, tanggal_posting, id)
+        )
+        conn.commit()
+        cursor.close()
+        conn.close()
+        return redirect(url_for('admin.halaman_baru'))
+
+    cursor.execute('SELECT * FROM halaman_baru WHERE id = %s', (id,))
+    data = cursor.fetchone()
+    cursor.close()
+    conn.close()
+
+    return render_template('admin/edit_halaman.html', data=data)
+
+@admin.route('/edit_postingan/<int:id>', methods=['GET', 'POST'])
+def edit_postingan(id):
+    # logika ambil data postingan
+    # logika update postingan
+    return render_template('admin/edit_postingan.html', data=data)
+
+
+# Hapus data
+@admin.route('/delete_halaman/<int:id>')
+def delete_halaman(id):
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
     if 'user' not in session:
         return redirect(url_for('admin.login'))
 
     conn = get_db()
     cursor = conn.cursor()
+<<<<<<< HEAD
     cursor.execute("DELETE FROM playlist WHERE id=%s", (id,))
+=======
+    cursor.execute('DELETE FROM halaman_baru WHERE id = %s', (id,))
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
     conn.commit()
     cursor.close()
     conn.close()
 
+<<<<<<< HEAD
     flash("Playlist berhasil dihapus!", "success")
     return redirect(url_for('admin.playlist_video'))
 @admin.route('/komentar_video')
@@ -1247,3 +1403,6 @@ def komentar_video():
 # ---------------- HALAMAN BARU ----------------
 # ---------------- HALAMAN BARU ----------------
 # ---------------- HALAMAN BARU ----------------
+=======
+    return redirect(url_for('admin.halaman_baru'))
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24

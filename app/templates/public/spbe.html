@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten
+      Purworejo
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom scrollbar for horizontal menus */
+      .scrollmenu {
+        overflow-x: auto;
+        white-space: nowrap;
+      }
+      .scrollmenu::-webkit-scrollbar {
+        height: 6px;
+      }
+      .scrollmenu::-webkit-scrollbar-thumb {
+        background: #2563eb;
+        border-radius: 3px;
+      }
+      .scrollmenu::-webkit-scrollbar-track {
+        background: #d1d5db;
+      }
+      /* Ellipsis text in announcement links */
+      .ellipsis-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 200px;
+      }
+      /* Prevent image distortion and rounding corners */
+      .main-image {
+        object-fit: cover;
+        border-radius: 0.5rem;
+      }
+      /* Vertical border line for side vertical button */
+      .vertical-text {
+        writing-mode: vertical-rl;
+        transform: rotate(180deg);
+        cursor: pointer;
+        padding: 0.5rem 0.7rem;
+        user-select: none;
+      }
+      /* Dropdown menu styles */
+      .dropdown-menu {
+        max-height: 300px; /* Set a maximum height */
+        overflow-y: auto; /* Enable vertical scrolling */
+      }
+    </style>
+  </head>
+  <body
+    class="bg-white font-sans text-gray-700 leading-relaxed selection:bg-blue-300 selection:text-white"
+  >
+    <!-- Header with blurred background image, logo, title, and search -->
+    <header 
+      class="relative h-40 sm:h-48 md:h-56 lg:h-8 xl:h-60 w-full bg-gray-200 shadow-lg"
+    >
+      <img
+        src="static/img/bg2.png"
+        class="absolute inset-0 w-full h-full object-cover brightness-75"
+        onerror="this.style.display='none'"
+      />
+      <div
+        class="absolute inset-0 flex flex-col py-4 px-2 sm:px-4 md:px-6 lg:px-8 xl:px-10"
+      >
+        <!-- Baris atas: Logo + Judul & Pencarian -->
+        <div class="flex items-start justify-between w-full">
+          <!-- Kiri: Logo + Judul -->
+          <div class="flex items-start gap-3 sm:gap-4">
+            <img
+              src="static/img/logo kabupaten pwr.png"
+              alt="Logo Kabupaten Purworejo"
+              class="w-12 sm:w-14 md:w-16 h-auto object-contain"
+              onerror="this.style.display='none'"
+            />
+            <h1
+              class="text-white text-sm sm:text-base md:text-lg lg:text-xl font-extrabold drop-shadow-lg leading-tight select-none mt-1"
+            >
+              DINAS KOMUNIKASI, INFORMATIKA,<br />
+              STATISTIK DAN PERSANDIAN<br />
+              KABUPATEN PURWOREJO
+            </h1>
+          </div>
+
+          <!-- Kanan: Form Pencarian -->
+          <form
+            role="search"
+            aria-label="Pencarian"
+            class="relative w-36 sm:w-44 md:w-52 lg:w-60"
+          >
+            <input
+              type="search"
+              placeholder="Cari ..."
+              aria-label="Cari informasi di situs Dinas Komunikasi"
+              class="w-full py-2 pl-3 pr-10 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-600 text-gray-800 text-sm"
+            />
+            <button
+              type="submit"
+              aria-label="Tombol cari"
+              class="absolute right-1 top-1 bottom-1 px-3 bg-blue-600 text-white rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600 text-sm"
+            >
+              Cari
+            </button>
+          </form>
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation menu -->
+    <nav
+      class="bg-blue-800 text-white select-none shadow-sm text-xs font-bold uppercase"
+    >
+      <div class="max-w-7xl mx-auto px-2 sm:px-4 lg:px-6">
+        <ul class="flex flex-wrap items-center space-x-1 py-1">
+          <a href="index.html" class="px-2 py-1 hover:underline">Beranda</a></li>
+
+          <!-- Dropdown: Profil -->
+          <li class="relative group">
+            <a href="profil.html"
+              class="px-2 py-1 flex items-center gap-1 hover:underline"
+              >Profil ▼</a
+            >
+            <ul
+              class="absolute hidden group-hover:block bg-blue-900 text-white mt-0 shadow-md z-50 text-xs min-w-[200px]"
+            >
+              <!-- Dropdown: Tugas Pokok dan Fungsi -->
+              <li class="relative group/subitem">
+                <a href="tugas-pokok-dan-fungsi.html"
+                  class="block px-3 py-2 hover:bg-blue-700 flex justify-between items-center"
+                >
+                  Tugas Pokok dan Fungsi <span>▶</span>
+                </a>
+                <!-- Level 2 submenu -->
+                <ul
+                  class="absolute left-full top-0 hidden group-hover/subitem:block bg-blue-900 text-white mt-0 ml-0 shadow-md z-50 min-w-[200px]"
+                >
+                  <li class="relative group/third">
+                    <a href="sekretariat.html"
+                      class="block px-3 py-2 hover:bg-blue-700 flex justify-between items-center"
+                    >
+                      Sekretariat <span>▶</span>
+                    </a>
+                    <!-- Level 3 submenu -->
+                    <ul
+                      class="absolute left-full top-0 hidden group-hover/third:block bg-blue-900 text-white mt-0 ml-0 shadow-md z-50 min-w-[220px]"
+                    >
+                      <li>
+                        <a href="subbagian-perencanaan-dan-keuangan.html" class="block px-3 py-2 hover:bg-blue-700"
+                          >Subbagian Perencanaan dan Keuangan</a
+                        >
+                      </li>
+                      <li>
+                        <a href="subbagian-umum-dan-kepegawaian.html" class="block px-3 py-2 hover:bg-blue-700"
+                          >Subbagian Umum dan Kepegawaian</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="bidangIKP.html" class="block px-3 py-2 hover:bg-blue-700"
+                      >Bidang IKP</a
+                    >
+                  </li>
+                  <li>
+                    <a href="bidangTISP.html" class="block px-3 py-2 hover:bg-blue-700"
+                      >Bidang TISP</a
+                    >
+                  </li>
+                  <li>
+                    <a href="bidangPPLKC.html" class="block px-3 py-2 hover:bg-blue-700"
+                      >Bidang PPLKC</a
+                    >
+                  </li>
+                </ul>
+              </li>
+
+                <a href="struktur-organisasi.html" class="block px-3 py-2 hover:bg-blue-700"
+                  >Struktur Organisasi</a
+                >
+              </li>
+              <li>
+                <a href="visi-dan-misi.html" class="block px-3 py-2 hover:bg-blue-700"
+                  >Visi dan Misi</a
+                >
+              </li>
+              <li>
+                <a href="profil-pejabat.html" class="block px-3 py-2 hover:bg-blue-700"
+                  >Profil Pejabat</a
+                >
+              </li>
+              <li>
+                <a href="kebijakan-umum-sistem-manajemen.html" class="block px-3 py-2 hover:bg-blue-700"
+                  >Kebijakan Umum Sistem Manajemen</a
+                >
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="news.html" class="px-2 py-1 hover:underline">News</a></li>
+
+          <!-- Dropdown: Video -->
+          <li class="relative group">
+            <a
+              href="galeri.html"
+              class="px-2 py-1 flex items-center gap-1 hover:underline"
+              >Galeri ▼</a
+            >
+            <ul
+              class="absolute hidden group-hover:block bg-blue-900 text-white mt-0 shadow-md z-50 text-xs min-w-[160px]"
+            >
+              <li>
+                <a href="vidio.html" class="block px-3 py-2 hover:bg-blue-700">Video</a>
+              </li>
+              <li>
+                <a href="foto.html" class="block px-3 py-2 hover:bg-blue-700">Foto</a>
+              </li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="laporan-isu-hoaks.html" class="px-2 py-1 hover:underline">Laporan Isu Hoaks</a>
+          </li>
+          <li><a href="download.html" class="px-2 py-1 hover:underline">Download</a></li>
+          <li><a href="agenda.html" class="px-2 py-1 hover:underline">Agenda</a></li>
+          <li>
+            <a href="layanan-skpd.html" class="px-2 py-1 hover:underline">Layanan SKPD</a>
+          </li>
+
+          <!-- Dropdown: Informasi Publik -->
+          <li class="relative group">
+            <a
+              href="informasi-publik.html"
+              class="px-2 py-1 flex items-center gap-1 hover:underline"
+              >Informasi Publik ▼</a
+            >
+            <ul
+              class="absolute hidden group-hover:block bg-blue-900 text-white mt-0 shadow-md z-50 text-xs min-w-[200px]"
+            >
+              <li>
+                <a href="dokumen-pelaksanaan-anggaran.html" class="block px-3 py-2 hover:bg-blue-700"
+                  >Dokumen Pelaksanaan Anggaran</a
+                >
+              </li>
+              <li>
+                <a href="LKjlP.html" class="block px-3 py-2 hover:bg-blue-700">LKjIP</a>
+              </li>
+              <li>
+                <a href="LHKAN.html" class="block px-3 py-2 hover:bg-blue-700">LHKAN</a>
+              </li>
+            </ul>
+          </li>
+
+          <li><a href="kebijakan.html" class="px-2 py-1 hover:underline">Kebijakan</a></li>
+          <li><a href="skm.html" class="px-2 py-1 hover:underline">SKM</a></li>
+          <li>
+            <a href="hubungi-kami.html" class="px-2 py-1 hover:underline">Hubungi Kami</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Secondary horizontal menu -->
+    <nav
+      aria-label="Sub Menu Tulisan"
+      class="bg-gray-100 border-b border-gray-300 leading-none"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <ul
+          class="flex flex-wrap space-x-4 text-xs text-gray-800 font-semibold uppercase h-10 items-center m-0 p-0"
+        >
+          <li><a href="sosial.html" class="hover:text-blue-700">Sosial</a></li>
+         <li><a href="rekrutmen.html" class="hover:text-blue-700">REKRUTMEN</a></li>
+          <li><a href="kim.html" class="hover:text-blue-700">KIM</a></li>
+          <li><a href="budaya.html" class="hover:text-blue-700">Budaya</a></li>
+          <li><a href="smart-city.html" class="hover:text-blue-700">Smart City</a></li>
+          <li><a href="moap.html" class="hover:text-blue-700">MOAP</a></li>
+          <li><a href="ppid.html" class="hover:text-blue-700">PPID</a></li>
+          <li><a href="pip.html" class="hover:text-blue-700">PIP</a></li>
+          <li><a href="kegiatan.html" class="hover:text-blue-700">Kegiatan</a></li>
+          <li><a href="spbe.html" class="hover:text-blue-700">spbe</a></li>
+          <li><a href="hubungi-kami.html" class="hover:text-blue-700">Hubungi Kami</a></li>
+        </ul>
+      </div>
+    </nav>
+  </body>
+</html>
+
+
+
+      
+<section class="py-10 bg-gray-100">
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- Header Section -->
+    <div class="bg-blue-500 text-white font-bold px-6 py-3 rounded-t-md flex justify-between items-center">
+      <h2 class="text-sm sm:text-base">Berita tag "SPBE"</h2>
+      <a href="index.html" class="text-white text-xs hover:underline">Back to homepage</a>
+    </div>
+
+    <!-- Card List -->
+    <div class="bg-white border border-gray-200 divide-y divide-gray-200 rounded-b-md">
+      <!-- Agenda Item -->
+      <div class="flex flex-col sm:flex-row gap-4 p-4">
+        <img src="static/img/Dinkominfostasandi Purworejo Gelar Rapat Koordinasi SPBE 2023 dan 2024.jpg" alt="KGTR" class="w-full sm:w-40 h-auto object-cover rounded-md">
+        <div class="flex-1">
+          <h3 class="https://dinkominfo.purworejokab.go.id/dinkominfostasandi-purworejo-gelar-rapat-koordinasi-spbe-2023-dan-2024">Dinkominfostasandi Purworejo Gelar Rapat Koordinasi SPBE 2023 dan 2024</h3>
+          <div class="text-xs text-gray-500 flex items-center gap-2 mt-1">
+            <span>👤 administrator</span>
+            <span>📅 11 Agu 2023</span>
+            <span>👁️ 170 view</span>
+          </div>
+          <p class="mt-2 text-sm text-gray-700">
+            Purworejo, Dinkominfostasandi Kabupaten Purworejo - Rabu, 6 Maret 2024&amp;nbsp; bertempat di ruang rapat Sekretariat Daerah Kabupaten Purworejo, peserta undangan dari Oragnisasi Perangkat Daerah Kabupaten Purworejo men . . .
+          </p>
+          <a href="#" class="inline-block mt-3 text-xs px-4 py-1 bg-gray-200 hover:bg-gray-300 rounded">See More0 ▸</a>
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-6 space-x-2">
+  <!-- Halaman 1 (aktif) -->
+  <button class="px-3 py-1 bg-gray-500 text-white rounded">1</button>
+  
+  <!-- Halaman lainnya -->
+  <button class="px-3 py-1 bg-gray-200 text-black rounded hover:bg-gray-300">2</button>
+  <button class="px-3 py-1 bg-gray-200 text-black rounded hover:bg-gray-300">3</button>
+  
+  <!-- Tombol Next -->
+  <button class="px-3 py-1 bg-gray-200 text-black rounded hover:bg-gray-300">&gt;</button>
+  
+  <!-- Tombol Last -->
+  <button class="px-3 py-1 bg-gray-200 text-black rounded hover:bg-gray-300 font-semibold">Last ›</button>
+</div>
+
+</section>
+
+      
+<!-- Footer with Tulisan section -->
+<footer aria-label="Footer" class="bg-blue-900 text-blue-100 py-1">
+  <div class="max-w-3xl mx-auto px-6 flex flex-col gap-6">
+
+    <!-- Grid Sosial Media dan Kontak -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-center sm:text-left items-center">
+      
+      <!-- Sosial Media -->
+      <div>
+        <h3 class="mb-3 text-lg font-semibold">Sosial Media</h3>
+        <div class="flex gap-11 justify-center sm:justify-start">
+          <a href="https://www.instagram.com/kominfo_purworejo" target="_blank">
+            <img src="static/img/instagram.png" alt="Instagram" class="w-6 h-6 hover:scale-110 transition duration-200">
+          </a>
+          <a href="https://api.whatsapp.com/send/?phone=6282140273000" target="_blank">
+            <img src="static/img/whatsapp.png" alt="WhatsApp" class="w-6 h-6 hover:scale-110 transition duration-200">
+          </a>
+          <a href="https://www.facebook.com/dinkominfopwr" target="_blank">
+            <img src="static/img/facebook.png" alt="Facebook" class="w-6 h-6 hover:scale-110 transition duration-200">
+          </a>
+          <a href="https://www.youtube.com/@DINKOMINFOPURWOREJO" target="_blank">
+            <img src="static/img/youtube.png" alt="YouTube" class="w-6 h-6 hover:scale-110 transition duration-200">
+          </a>
+          <a href="https://twitter.com/dinkominfopwr" target="_blank">
+            <img src="static/img/twitter.png" alt="Twitter" class="w-6 h-6 hover:scale-110 transition duration-200">
+          </a>
+        </div>
+      </div>
+
+ <!-- Kontak -->
+      <div>
+        <h3 class="mb-3 text-lg font-semibold">KONTAK</h3>
+        <ul role="list" class="space-y-3 flex flex-col items-center sm:items-start">
+          <li class="flex items-center gap-2">
+            <img src="static/img/icon1.png" alt="Alamat" class="w-4 h-4">
+            <a href=https://maps.app.goo.gl/aqVt2ZoaBkyKFnxY9
+              target="_blank" 
+              class="hover:underline hover:text-white"
+            >Jln. Proklamasi no.2 Purworejo
+            </a>
+
+          </li>
+          <li class="flex items-center gap-2">
+            <img src="static/img/icon2.png" alt="Telepon" class="w-4 h-4">
+            <a href="tel:0275321493" class="hover:underline hover:text-white"> (0275) 321493
+            </a>
+
+          </li>
+          <li class="flex items-center gap-2">
+            <img src="static/img/icon3.png" alt="Email" class="w-4 h-4">
+            <a href="https://mail.google.com/mail/?view=cm&fs=1&to=dinkominfo@purworejokab.go.id" 
+              target="_blank"
+              class="hover:underline hover:text-white">
+              dinkominfo@purworejokab.go.id
+            </a>
+
+
+          </li>
+          <li class="flex items-center gap-2">
+            <img src="static/img/icon4.jpg" alt="Website" class="w-4 h-4">
+            <a href="https://dinkominfo.purworejokab.go.id" target="_blank" class="hover:underline hover:text-white"> dinkominfo.purworejokab.go.id
+            </a>
+
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Copyright -->
+    <div class="text-center text-sm text-blue-200 border-t border-blue-800 pt-2">
+      © Copyright Dinas Komunikasi, Informatika, Statistik dan Persandian Kabupaten Purworejo – 2025
+    </div>
+  </div>
+</footer>
+
+  <!-- Tombol Kanal Aduan Vertikal -->
+  <button
+    id="kanalAduanButton"
+    class="fixed top-1/2 left-0 transform -translate-y-1/2 bg-blue-600 text-white px-2 py-4 rounded-r-lg shadow-md hover:bg-blue-700 transition z-50 font-semibold text-xs flex flex-col items-center tracking-wider"
+  >
+    <span>K</span>
+    <span>A</span>
+    <span>N</span>
+    <span>A</span>
+    <span>L</span>
+    <span class="mb-1">&nbsp;</span>
+    <span>A</span>
+    <span>D</span>
+    <span>U</span>
+    <span>A</span>
+    <span>N</span>
+  </button>
+
+  <!-- Popup Kanal Aduan -->
+  <div
+    id="popupKanalAduan"
+    class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-40"
+  >
+    <div class="bg-white w-11/12 max-w-md p-6 rounded-lg shadow-xl border-t-4 border-blue-600 relative">
+      <!-- Tombol Tutup -->
+      <button
+        id="tutupPopup"
+        class="absolute top-2 right-3 text-gray-400 hover:text-blue-500 text-2xl font-bold"
+      >
+        &times;
+      </button>
+      <h2 class="text-lg font-semibold text-blue-600 mb-4">Kanal Aduan Resmi Kabupaten Purworejo</h2>
+      <ul class="space-y-3 text-blue-600 text-sm font-medium">
+<ul class="space-y-3 text-blue-600 text-sm font-medium">
+  <li>
+    <a href="https://aduanv2.purworejokab.go.id/pengaduan/" target="_blank" class="hover:underline flex items-center">
+      <img src="static/img/aduanporjo.png" alt="AduanPorjo" class="w-5 h-5 mr-2"> AduanPorjo
+    </a>
+  </li>
+  <li>
+    <a href="https://www.lapor.go.id/" target="_blank" class="hover:underline flex items-center">
+      <img src="static/img/lapor.png" alt="Lapor SPAN" class="w-5 h-5 mr-2"> Lapor SPAN
+    </a>
+  </li>
+  <li>
+    <a href="https://www.instagram.com/purworejokab_/" target="_blank" class="hover:underline flex items-center">
+      <img src="static/img/instagram.png" alt="Instagram" class="w-5 h-5 mr-2"> Instagram
+    </a>
+  </li>
+  <li>
+    <a href="https://api.whatsapp.com/send/?phone=6282140273000&text&type=phone_number&app_absent=0" target="_blank" class="hover:underline flex items-center">
+      <img src="static/img/whatsapp.png" alt="WhatsApp" class="w-5 h-5 mr-2"> WhatsApp
+    </a>
+  </li>
+  <li>
+    <a href="https://www.facebook.com/purworejokab.go.id" target="_blank" class="hover:underline flex items-center">
+      <img src="static/img/facebook.png" alt="Facebook" class="w-5 h-5 mr-2"> Facebook
+    </a>
+  </li>
+</ul>
+
+
+  <!-- Script Interaktif -->
+  <script>
+    const tombol = document.getElementById("kanalAduanButton");
+    const popup = document.getElementById("popupKanalAduan");
+    const tutup = document.getElementById("tutupPopup");
+
+    tombol.addEventListener("click", () => {
+      popup.classList.remove("hidden");
+    });
+
+    tutup.addEventListener("click", () => {
+      popup.classList.add("hidden");
+    });
+
+    popup.addEventListener("click", (e) => {
+      if (e.target === popup) {
+        popup.classList.add("hidden");
+      }
+    });
+  </script>
+</body>
+</html>

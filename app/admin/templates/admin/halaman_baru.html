@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -140,7 +142,68 @@
               <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
           </div>
+<<<<<<< HEAD
         </form>
+=======
+
+             <div class="table-responsive">
+              <table class="table table-bordered table-striped table-sm">
+                <thead class="table-light">
+                  <tr>
+                    <th>No</th>
+                    <th>Judul</th>
+                    <th class="border px-3 py-2">Link</th>
+                    <th>Tanggal Postingan</th>
+                    <th>action</th>
+                  </tr>
+                </thead>
+                <tbody>
+              {% if data %}
+                {% for row in data %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ row.judul }}</td>
+                    <td>{{ row.link }}</td>
+                    <td>{{ row.tanggal_postingan }}</td>
+                    
+                    <td>
+                        <a href="{{ url_for('admin.edit_sensor', id=row.id) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ url_for('admin.delete_postingan', id=row.id) }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus data ini?')">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+                {% else %}
+                <tr>
+                    <td colspan="5" class="text-center">Tidak ada data</td>
+                </tr>
+            {% endif %}
+        </tbody>
+        </table>
+            </div>
+            </body>
+            </html>
+                
+            <div class="d-flex justify-content-between align-items-center mt-3">
+              <div>Showing 1 to 10 of ... entries</div>
+              <nav>
+                <ul class="pagination pagination-sm mb-0">
+                  <li class="page-item disabled">
+                    <a class="page-link">Previous</a>
+                  </li>
+                  <li class="page-item active">
+                    <a class="page-link" href="#">1</a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item"><a class="page-link" href="#">4</a></li>
+                  <li class="page-item"><a class="page-link" href="#">5</a></li>
+                  <li class="page-item"><a class="page-link" href="#">…</a></li>
+                  <li class="page-item"><a class="page-link" href="#">10</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#">Next</a>
+                  </li>
+        </div>
+>>>>>>> 658ccd394250cfe6c40815ea7fde4d5784b1de24
       </div>
     </div>
 
